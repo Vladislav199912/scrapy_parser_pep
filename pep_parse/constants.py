@@ -20,3 +20,9 @@ ALLOWED_STATUS = ('Active',
                   'Withdrawn',
                   'Draft',
                   'Total')
+
+NAME = 'pep'
+
+ALLOWED_DOMAINS = ['peps.python.org']
+
+START_URLS = ['https://peps.python.org/']

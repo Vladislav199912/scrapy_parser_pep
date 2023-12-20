@@ -8,7 +8,7 @@ ROBOTSTXT_OBEY = True
 ITEM_PIPELINES = {
     'pep_parse.pipelines.PepParsePipeline': 300,
 }
-
+STATUS = 'status'
 FEEDS = {
     'results/pep_%(time)s.csv': {
         'format': 'csv',

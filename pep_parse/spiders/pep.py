@@ -2,18 +2,17 @@ import scrapy
 
 from pep_parse.items import PepParseItem
 from pep_parse.utils import parse_status
+from pep_parse.constants import NAME, ALLOWED_DOMAINS, START_URLS
 
 
 class PepSpider(scrapy.Spider):
-    name = 'pep'
-    allowed_domains = ['peps.python.org']
-    start_urls = ['https://peps.python.org/']
+    name = NAME
+    allowe_domains = ALLOWED_DOMAINS
+    start_urls = START_URLS
 
     def parse(self, response):
-        all_peps = response.css(
-            'table.pep-zero-table'
-        ).css('tbody').css('a[href^="pep-"]')
-        for pep_link in all_peps:
+        peps = response.css('section#numerical-index a::attr(href)')
+        for pep_link in peps:
             yield response.follow(pep_link, callback=self.parse_pep)
 
     def parse_pep(self, response):
